@@ -1,7 +1,10 @@
 import { Grid, Typography } from '@mui/material';
 import LoginForm from 'components/forms/LoginForm';
+import useAuth from 'hooks/useAuth';
 
 const Login = () => {
+  const { isLoggingIn, login } = useAuth();
+
 	return (
     <Grid container>
       <Grid item xs={12} pb={2}>
@@ -10,7 +13,10 @@ const Login = () => {
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <LoginForm/>
+        <LoginForm
+          onSubmit={(values) => login(values.email, values.password)}
+          loading={isLoggingIn}
+        />
       </Grid>
     </Grid>
 	);

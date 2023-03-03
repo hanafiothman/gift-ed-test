@@ -1,10 +1,14 @@
 import { Box, Grid } from '@mui/material';
 import GftLink from 'components/reusable/GftLink';
 import GftPaper from 'components/reusable/GftPaper';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Logo from 'assets/jpg/logo.jpeg';
+import useScrollToTop from 'hooks/useScrollToTop';
 
 const AuthLayout = () => {
+  const location = useLocation();
+  useScrollToTop(window, [location]);
+
 	return (
     <Box
       sx={{

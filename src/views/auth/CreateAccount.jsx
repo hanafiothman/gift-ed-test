@@ -10,7 +10,9 @@ const CreateAccount = () => {
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <CreateAccountForm/>
+        <CreateAccountForm
+          onSubmit={(values) => alert('TODO: api')}
+        />
       </Grid>
     </Grid>
 	);
