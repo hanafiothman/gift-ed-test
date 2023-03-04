@@ -2,7 +2,9 @@ import useAuth from 'hooks/useAuth';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import CreateAccount from 'views/auth/CreateAccount';
 import Login from 'views/auth/Login';
+import Dashboard from 'views/dashboard/Dashboard';
 import AuthLayout from 'views/layout/AuthLayout';
+import Layout from 'views/layout/Layout';
 
 const App = () => {
   const location = useLocation();
@@ -19,9 +21,12 @@ const App = () => {
           element={token ? <Navigate to={location.state?.from?.pathname || '/dashboard'} /> : <Login/>}
         />
       </Route>
-      <Route
-        element={token ? <div>Hanafi</div> : <Navigate to={'/login'} state={{ from: location }} replace/>}
-      />
+      <Route element={token ? <Layout/> : <Navigate to={'/login'} state={{ from: location }} replace/>}>
+        <Route
+          path={'dashboard'}
+          element={<Dashboard/>}
+        />
+      </Route>
     </Routes>
 );
 }

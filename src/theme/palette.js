@@ -12,7 +12,7 @@ const palette = {
 	// gray colors
 	darkText: '#000000',
 	lightGrayText: '#8A8A8A',
-	grayLine: '#E5E5E5',
+	grayLine: '#DADADA',
 	grayInactive: '#E5E5E5',
 	grayBackground: '#EDEFF0',
 	white: '#FFFFFF',

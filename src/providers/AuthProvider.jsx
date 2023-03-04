@@ -9,34 +9,38 @@ const AuthProvider = ({ children }) => {
   const [isLoggingIn, setLoggingIn] = useState(false);
   const [token, setToken] = useState(null);
 
-  const saveToken = (_token) => {
-    setToken(_token);
-    setCookie('token', _token, { path: '/' });
+  const saveTokens = (token, refreshToken) => {
+    setToken(token);
+    setCookie('refresh_token', refreshToken, { path: '/' });
   }
 
-  const removeToken = () => {
+  const removeTokens = () => {
     setToken(null);
-    removeCookie('token');
+    removeCookie('refresh_token');
   }
 
   const submitLogin = async (email, password) => {
-    // Login will only save a fake token in the `token` cookie and save in token state
+    // Login will only save a fake refresh token in the `refresh_token` cookie and save auth token in token state
     setLoggingIn(true);
     setTimeout(() => {
-      saveToken(Math.random().toString(36).slice(2));
+      saveTokens(Math.random().toString(36).slice(2), Math.random().toString(36).slice(2));
       setLoggingIn(false);
-    }, 3000);
+    }, 2000);
   }
 
   const logout = () => {
     // Logout will only remove the `token` cookie and reset token state to null
-    removeToken();
+    removeTokens();
+  }
+
+  const refreshToken = () => {
+    const refreshToken = getCookie('refresh_token');
+    if(refreshToken) saveTokens(Math.random().toString(36).slice(2), refreshToken);
   }
 
   useEffect(() => {
     // fake refresh token
-    const _token = getCookie('token');
-    if(_token) saveToken(_token);
+    refreshToken();
   }, []);
 
   return (
