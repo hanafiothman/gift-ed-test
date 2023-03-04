@@ -98,6 +98,12 @@ const Dashboard = () => {
     })
   ]);
 
+  const onDropLabel = (data, destinationId) => {
+    const [, labelIdx] = data.split('-');    
+    const [, destY, destX] = destinationId.split('-');
+    alert(`${unassignedLabels[Number(labelIdx)]}: ${columns[Number(destX)]}, ${rows[Number(destY)]}`);
+  }
+
   return (
     <Grid container py={2}>
       <Grid item xs={12} mb={2}>
@@ -154,7 +160,7 @@ const Dashboard = () => {
                               id={`droppable-${i}-${j}`}
                               dataTransferId={'label'}
                               sx={{...styles.innerBox, backgroundColor: getBoxColor(j, i)}}
-                              onDrop={(data, destinationId) => console.log(data)}
+                              onDrop={(data, destinationId) => onDropLabel(data, destinationId)}
                             >
                             </GftDroppable>
                           </Box>

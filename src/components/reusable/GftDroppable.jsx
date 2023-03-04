@@ -4,15 +4,13 @@ const GftDroppable = ({ id, dataTransferId, children, allowMultipleChild=false, 
   const handleDrop = (e) => {
     e.preventDefault();
     const data = e.dataTransfer.getData(dataTransferId);
-    if(!allowMultipleChild && e.target.childElementCount === 1) {
-      return;
-    }
+    console.log(allowMultipleChild, e.target.childElementCount);
     e.target.appendChild(document.getElementById(data));
     onDrop && onDrop(data, id);
   }
   
   const allowDrop = (e) => {
-    e.preventDefault();4
+    e.preventDefault();
   }
 
   return (
