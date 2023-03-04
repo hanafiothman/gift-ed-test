@@ -31,7 +31,8 @@ const Navbar = () => {
         top: 0,
         width: '100%',
         height: NAVBAR_HEIGHT,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        zIndex: 1200
       }}
 		>
       <GftLink

@@ -12,11 +12,11 @@ const AuthLayout = () => {
 	return (
     <Box
       sx={{
-        p: 0,
+        p: { xs: 2, md: 5 },
         backgroundColor: 'black'
       }}
     >
-      <Grid container sx={{height: '100vh'}}>
+      <Grid container minHeight={'100vh'}>
         <Grid
           item
           xs={12}
@@ -36,12 +36,12 @@ const AuthLayout = () => {
             sx={(theme) => ({
               px: 5,
               py: 3,
-              width: 300,
+              width: 400,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               [theme.breakpoints.down('sm')]: {
-                width: '80%'
+                width: '100%'
               }
             })}
           >

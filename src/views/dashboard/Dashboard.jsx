@@ -34,8 +34,7 @@ const styles = {
   graphContainer: {
     display: 'flex',
     alignItems: 'flex-start',
-    py: 4,
-    px: 3
+    overflow: 'auto'
   },
   graph: {
     position: 'relative',
@@ -130,62 +129,69 @@ const Dashboard = () => {
         </GftDroppable>
       </Grid>
       <Grid item xs={12}>
-        <GftPaper sx={styles.graphContainer}>
-          <Box pt={4} display={'flex'} flexDirection={'column-reverse'}>
-            {rows.map((e, i) => (
-              <Box
-                key={i}
-                sx={{
-                  height: CELL_HEIGHT,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'flex-end',
-                  px: 1
-                }}
-              >
-                <Typography>{e}</Typography>
-              </Box>
-            ))}
-          </Box>
-          <Box>
-            <Box sx={styles.graph}>
-              <Box sx={styles.rows}>
-                {grids.map((row, i) => {
-                  return (
-                    <Box key={i} sx={styles.row}>
-                      {row.map((col, j) => {
-                        return (
-                          <Box sx={styles.box} key={j}>
-                            <GftDroppable
-                              id={`droppable-${i}-${j}`}
-                              dataTransferId={'label'}
-                              sx={{...styles.innerBox, backgroundColor: getBoxColor(j, i)}}
-                              onDrop={(data, destinationId) => onDropLabel(data, destinationId)}
-                            >
-                            </GftDroppable>
-                          </Box>
-                        );
-                      })}
-                    </Box>
-                  );
-                })}
-              </Box>
-            </Box>
-            <Box pr={4} width={GRAPH_WIDTH} display={'flex'}>
-              {columns.map((e, i) => (
+        <GftPaper
+          sx={{
+            py: 4,
+            px: 3
+          }}
+        >
+          <Box sx={styles.graphContainer}>
+            <Box pt={4} display={'flex'} flexDirection={'column-reverse'}>
+              {rows.map((e, i) => (
                 <Box
                   key={i}
                   sx={{
-                    width: CELL_WIDTH,
+                    height: CELL_HEIGHT,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    py: 1
+                    justifyContent: 'flex-end',
+                    px: 1
                   }}
                 >
                   <Typography>{e}</Typography>
                 </Box>
               ))}
+            </Box>
+            <Box>
+              <Box sx={styles.graph}>
+                <Box sx={styles.rows}>
+                  {grids.map((row, i) => {
+                    return (
+                      <Box key={i} sx={styles.row}>
+                        {row.map((col, j) => {
+                          return (
+                            <Box sx={styles.box} key={j}>
+                              <GftDroppable
+                                id={`droppable-${i}-${j}`}
+                                dataTransferId={'label'}
+                                sx={{...styles.innerBox, backgroundColor: getBoxColor(j, i)}}
+                                onDrop={(data, destinationId) => onDropLabel(data, destinationId)}
+                              >
+                              </GftDroppable>
+                            </Box>
+                          );
+                        })}
+                      </Box>
+                    );
+                  })}
+                </Box>
+              </Box>
+              <Box pr={4} width={GRAPH_WIDTH} display={'flex'}>
+                {columns.map((e, i) => (
+                  <Box
+                    key={i}
+                    sx={{
+                      width: CELL_WIDTH,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      py: 1
+                    }}
+                  >
+                    <Typography>{e}</Typography>
+                  </Box>
+                ))}
+              </Box>
             </Box>
           </Box>
         </GftPaper>
